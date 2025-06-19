@@ -1,0 +1,28 @@
+[project]
+name = "spy-sc2"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Volker Schmidt",email = "volker.schmidt91@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10, <3.13"
+dependencies = [
+    "burnysc2 (>=7.0.5,<8.0.0)",
+    "pyarrow (>=20.0.0,<21.0.0)",
+    "s2protocol (>=5.0.14.93333.0,<6.0.0.0.0)",
+    "click (>=8.2.1,<9.0.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "pandas (>=2.3.0,<3.0.0)",
+    "dask (>=2025.5.1,<2026.0.0)",
+    "mpyq (>=0.2.5,<0.3.0)",
+    "loguru (>=0.7.3,<0.8.0)"
+]
+
+[tool.poetry]
+packages = [{include = "spy_sc2", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
