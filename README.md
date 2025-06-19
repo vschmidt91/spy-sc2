@@ -5,7 +5,6 @@ A Starcraft II Replay Analysis Toolbox
 ## Prerequisites
 
 - Docker
-- Poetry
 
 StarCraft II installation is not required, the headless game will be downloaded during build.
 
