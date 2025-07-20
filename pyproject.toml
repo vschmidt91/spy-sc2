@@ -1,12 +1,12 @@
 [project]
 name = "spy-sc2"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = [
     {name = "Volker Schmidt",email = "volker.schmidt91@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.10, <3.13"
+requires-python = ">=3.11, <3.13"
 dependencies = [
     "burnysc2 (>=7.0.5,<8.0.0)",
     "pyarrow (>=20.0.0,<21.0.0)",
@@ -16,7 +16,17 @@ dependencies = [
     "pandas (>=2.3.0,<3.0.0)",
     "dask (>=2025.5.1,<2026.0.0)",
     "mpyq (>=0.2.5,<0.3.0)",
-    "loguru (>=0.7.3,<0.8.0)"
+    "loguru (>=0.7.3,<0.8.0)",
+    "pandas-stubs (>=2.3.0.250703,<3.0.0.0)",
+]
+
+[project.optional-dependencies]
+test = [
+    "mypy>=1.12.0",
+    "pandas-stubs (>=2.3.0.250703,<3.0.0.0)",
+    "ruff (>=0.11.0,<0.12.0)",
+    "types-s2clientprotocol (>=5.0.0.20241030,<6.0.0.0)",
+    "types-tqdm>=4.66.0.20240417",
 ]
 
 [tool.poetry]
@@ -26,3 +36,37 @@ packages = [{include = "spy_sc2", from = "src"}]
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "W",    # warnings
+    "F",    # Pyflakes
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "I",    # isort
+    "NPY",  # numpy specific
+    "PD",   # pandas specific
+    "PERF", # performance
+    "PLE",  # Error
+    "PLW",  # Warning
+    "UP",   # Upgrade to newer language
+    "FURB", # refurb
+    "RUF",  # ruff specific
+]
+ignore = ["E501", "B019", "PD901"]
+fixable = ["ALL"]
+
+[[tool.mypy.overrides]]
+module = [
+    "mpyq.*",
+    "pyarrow.*",
+    "s2protocol.*",
+    "sc2.*",
+    "tomllib.*",
+]
+ignore_missing_imports = true

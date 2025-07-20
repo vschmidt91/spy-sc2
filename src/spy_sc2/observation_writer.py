@@ -1,9 +1,9 @@
+from collections.abc import Iterable
+
 import pandas as pd
-from s2clientprotocol.sc2api_pb2 import Observation
 import pyarrow
 from pyarrow.parquet import ParquetWriter
-
-from collections.abc import Iterable
+from s2clientprotocol.sc2api_pb2 import Observation
 
 
 class ObservationWriter:

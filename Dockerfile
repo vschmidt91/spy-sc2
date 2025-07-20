@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 USER root
 WORKDIR /root/
@@ -42,9 +42,10 @@ RUN python3 -m pip install poetry
 
 # Create a symlink for the maps directory
 RUN ln -s /root/StarCraftII/Maps /root/StarCraftII/maps
+ADD resources/maps /root/StarCraftII/maps
 
 WORKDIR /root/spy
-ADD ./resources/maps /root/StarCraftII/maps
+ADD config config
 ADD pyproject.toml pyproject.toml
 ADD README.md README.md
 ADD scripts scripts
