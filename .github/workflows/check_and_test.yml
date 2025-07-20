@@ -25,7 +25,7 @@ jobs:
       - name: Update pip
         run: poetry run pip install -U pip
       - name: Install requirements
-        run: poetry install --no-root --extras test
+        run: poetry run pip install .[test]
       - name: Run checks
         run: make check
       - name: Run tests
