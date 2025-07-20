@@ -1,0 +1,32 @@
+---
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Check and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: ${{ github.head_ref }}
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'poetry'
+      - name: Update pip
+        run: poetry run pip install -U pip
+      - name: Install requirements
+        run: poetry install --no-root --extras test
+      - name: Run checks
+        run: make check
+      - name: Run tests
+        run: make test
