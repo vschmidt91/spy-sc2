@@ -1,2 +1,4 @@
+# Windows Default: "C:\\ProgramData\\Blizzard Entertainment\\Battle.net"
+# Linux Default: "/root/StarCraftII/Battle.net"
 battlenet_cache = "C:\\ProgramData\\Blizzard Entertainment\\Battle.net"
 game_step = 8

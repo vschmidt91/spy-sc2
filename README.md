@@ -51,5 +51,5 @@ scripts/analyze_replays.sh
 ## Local Start
 
 ```sh
-scripts/analyze_replay.py --config=config/debug.toml resources/replays/252bacf5e80baa2f3691f75d4d4239c8459606d42cfe2eb7123dd9bc5ef83fac.SC2Replay
+python scripts/analyze_replay.py --config=config/debug.toml resources/replays/252bacf5e80baa2f3691f75d4d4239c8459606d42cfe2eb7123dd9bc5ef83fac.SC2Replay
 ```

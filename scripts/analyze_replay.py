@@ -13,8 +13,6 @@ from spy_sc2.utils import CommandWithConfigFile, async_command
 @click.command(cls=CommandWithConfigFile("config"))
 @click.option("--config", type=click.File("rb"))
 @click.argument("replay-glob", type=str)
-# "C:\\ProgramData\\Blizzard Entertainment\\Battle.net"
-# "/root/StarCraftII/Battle.net"
 @click.option("--battlenet-cache", type=click.Path(exists=True, file_okay=False))
 @click.option("--game-step", type=int, default=1)
 @click.option("--fullscreen", type=bool, default=False)
