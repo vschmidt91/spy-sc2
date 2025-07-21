@@ -17,6 +17,8 @@ from spy_sc2.utils import CommandWithConfigFile, async_command
 @click.option("--game-step", type=int, default=1)
 @click.option("--fullscreen", type=bool, default=False)
 @click.option("--realtime", type=bool, default=False)
+@click.option("--include-neutrals", type=bool, default=True)
+@click.option("--include-observer", type=bool, default=True)
 @async_command
 async def main(
     config,
@@ -25,6 +27,8 @@ async def main(
     game_step: int,
     fullscreen: bool,
     realtime: bool,
+    include_neutrals: bool,
+    include_observer: bool,
 ) -> None:
     logger.disable("sc2")
 
@@ -41,8 +45,12 @@ async def main(
         if battlenet_cache:
             replay.update_battle_net_cache(battlenet_cache)
 
-        with ObservationWriter(replay_path) as writer:
-            for player_id in [0, 1, 2]:
+        player_ids = [p["PlayerID"] for p in replay.players]
+        if include_observer:
+            player_ids.append(0)
+
+        with ObservationWriter(replay_path, include_neutrals) as writer:
+            for player_id in player_ids:
                 observations = replay.read_observations(
                     player_id,
                     game_step=game_step,

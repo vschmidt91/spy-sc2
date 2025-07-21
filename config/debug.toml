@@ -2,3 +2,5 @@
 # Linux Default: "/root/StarCraftII/Battle.net"
 battlenet_cache = "C:\\ProgramData\\Blizzard Entertainment\\Battle.net"
 game_step = 8
+include_neutrals = false
+include_observer = false
