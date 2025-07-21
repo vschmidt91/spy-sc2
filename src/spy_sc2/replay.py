@@ -48,7 +48,7 @@ class Replay:
     async def read_observations(
         self,
         player_id: int,
-        game_step=2,
+        game_step=1,
         fullscreen=False,
         realtime=False,
     ) -> AsyncGenerator[Observation]:

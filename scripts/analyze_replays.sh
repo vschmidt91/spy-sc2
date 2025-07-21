@@ -12,6 +12,6 @@ for file in $input_dir/*.SC2Replay; do
     --rm \
     analyzer \
     scripts/analyze_replay.py \
-    "--config=config/debug.toml" \
+    "--config=config/docker.toml" \
     "replays/$filename"
 done
