@@ -42,7 +42,7 @@ async def main(
             replay.update_battle_net_cache(battlenet_cache)
 
         with ObservationWriter(replay_path) as writer:
-            for player_id in [1, 2]:
+            for player_id in [0, 1, 2]:
                 observations = replay.read_observations(
                     player_id,
                     game_step=game_step,

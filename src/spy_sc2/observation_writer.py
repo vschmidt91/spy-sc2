@@ -62,17 +62,16 @@ class ObservationWriter:
 
     def _get_unit_records(self, observation: Observation, **kwargs) -> Iterable[dict]:
         for unit in observation.raw_data.units:
-            if unit.owner in {1, 2}:
-                yield {
-                    "owner": unit.owner,
-                    "tag": unit.tag,
-                    "unit_type": unit.unit_type,
-                    "x": unit.pos.x,
-                    "y": unit.pos.y,
-                    "health": unit.health,
-                    "shield": unit.shield,
-                    **kwargs,
-                }
+            yield {
+                "owner": unit.owner,
+                "tag": unit.tag,
+                "unit_type": unit.unit_type,
+                "x": unit.pos.x,
+                "y": unit.pos.y,
+                "health": unit.health,
+                "shield": unit.shield,
+                **kwargs,
+            }
 
     def _get_upgrade_records(self, observation: Observation, **kwargs) -> Iterable[dict]:
         for uprade in observation.raw_data.player.upgrade_ids:
