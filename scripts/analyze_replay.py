@@ -33,19 +33,17 @@ async def main(
     logger.info(f"{replay_paths=}")
 
     for replay_path in replay_paths:
-        dataset_file = replay_path + ".parquet"
-
         with open(replay_path, "rb") as f:
             replay_data = f.read()
 
-        metadata = Replay(replay_data)
+        replay = Replay(replay_data)
 
         if battlenet_cache:
-            metadata.update_battle_net_cache(battlenet_cache)
+            replay.update_battle_net_cache(battlenet_cache)
 
-        with ObservationWriter(dataset_file) as writer:
+        with ObservationWriter(replay_path) as writer:
             for player_id in [1, 2]:
-                observations = metadata.read_observations(
+                observations = replay.read_observations(
                     player_id,
                     game_step=game_step,
                     fullscreen=fullscreen,
@@ -53,7 +51,7 @@ async def main(
                 )
                 try:
                     async for observation in tqdm(
-                        observations, desc=f"{replay_path=}, {player_id=}", total=metadata.game_loops // game_step
+                        observations, desc=f"{replay_path=}, {player_id=}", total=replay.game_loops // game_step
                     ):
                         writer.write_observation(observation, player=player_id)
                 except ProtocolError as error:
