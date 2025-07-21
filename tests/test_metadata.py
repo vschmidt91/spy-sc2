@@ -12,7 +12,10 @@ class TestMetadata(TestCase):
         self.assertEqual("EphemeronAIE.SC2Map", metadata.map_name)
         self.assertEqual("B89B5D6FA7CBF6452E721311BFBC6CB2", metadata.data_version)
         self.assertEqual("Base75689", metadata.base_build)
-        self.assertEqual({1: "Zerg", 2: "Zerg"}, metadata.player_races)
+        self.assertEqual(1, metadata.players[0]["PlayerID"])
+        self.assertEqual("Zerg", metadata.players[0]["AssignedRace"])
+        self.assertEqual(2, metadata.players[1]["PlayerID"])
+        self.assertEqual("Zerg", metadata.players[1]["AssignedRace"])
 
     def test_battle_net_cache(self):
         with open(
